@@ -7,5 +7,8 @@ Plug 'neovimhaskell/haskell-vim'
 " Python
 Plug 'davidhalter/jedi-vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
