@@ -188,10 +188,11 @@ gaps outer 15
 for_window [class="^.*"] border pixel 2
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/Downloads/galaxy.jpg
+exec --no-startup-id feh --bg-fill '/home/matteo/Downloads/vector-mountain-forest-1024.jpeg'
 
 # Transparency
 #exec xcompmgr -c -f -n 
 exec_always --no-startup-id compton --config /home/matteo/.config/compton.conf
 
-
+# urxvt theme
+exec --no-startup-id xrdb -merge .Xresources
