@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '~/images/galaxy.jpg' 
+feh --no-fehbg --bg-fill '/home/matteo/Downloads/vector-mountain-forest-1024.jpeg' 
