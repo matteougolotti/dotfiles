@@ -108,5 +108,8 @@ source $HOME/.cargo/env
 alias python="python3"
 export PATH="$HOME/.poetry/bin:${PATH}"
 
+# Kitty
+export PATH="$HOME/.local/kitty.app/bin:${PATH}"
+
 # Erlang
 export PATH=~/.cache/rebar3/bin:$PATH
