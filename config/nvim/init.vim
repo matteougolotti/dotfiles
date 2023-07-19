@@ -6,7 +6,12 @@ set hidden
 set nobackup
 set nowritebackup
 
+:set colorcolumn=100
+
 call plug#begin('~/.vim/plugged')
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
 
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -30,18 +35,22 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 
+" Pyhton
+" Automatically detect virtualenv
+Plug 'rafi/vim-venom', { 'for': 'python' }
+
+" Rust
+Plug 'alx741/vim-rustfmt'
+
 " TypeScript
 Plug 'leafgarland/typescript-vim'
 
-" Rust
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
-
-" Solidity
-Plug 'tomlion/vim-solidity'
-
 " VimSpector
 Plug 'puremourning/vimspector'
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 
 " Misc
 Plug 'tpope/vim-commentary'
@@ -74,28 +83,28 @@ else
   set signcolumn=no
 endif
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+" if exists('*complete_info')
+"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -123,3 +132,10 @@ nmap <Leader> di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader> di <Plug>VimspectorBalloonEval
 let g:vimspector_enable_mappings = 'HUMAN'
+
+" Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
